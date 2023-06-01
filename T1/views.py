@@ -6,21 +6,32 @@ from django.urls import reverse
 import django.contrib
 from django.contrib.auth.forms import UserCreationForm
 
+from T1.forms import  SignUpForm
 
+
+# def register(request):
+#     if request.method == "POST":
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data(['username'])
+#             password = form.cleaned_data(['password1'])
+#             messages.success(request, 'Registration successful')
+#             return reverse()
+#     else:
+#         form = UserCreationForm(request.POST)
+#
+#     return render(request, 'T1/register.html', {"form": form})
 def register(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data(['username'])
-            password = form.cleaned_data(['password1'])
-            messages.success(request, 'Registration successful')
             return reverse()
     else:
-        form = UserCreationForm(request.POST)
+        form = SignUpForm()
 
-    return render(request, 'T1/register.html', {"form": form})
-
+    return render(request, 'T1/register.html', {'form': form})
 
 class Register(forms.Form):
     username = forms.CharField(label='User Name:')
