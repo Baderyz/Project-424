@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    {% extends 'layout.html' %}
+
+    {% block content %}
+      <h1>Cell Phones</h1>
+      <ul>
+        {% for phone in phones %}
+          <li>
+            <h2>{{ phone.name }}</h2>
+            <img src="{{ phone.image.url }}" alt="{{ phone.name }}">
+            <p>{{ phone.description }}</p>
+            <p>Manufacturer: {{ phone.manufacturer }}</p>
+            <p>Price: ${{ phone.price }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endblock %}
+</html>
